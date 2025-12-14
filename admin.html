@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Sistem Manajemen Seminar</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        .breadcrumb {
+            background-color: transparent;
+            padding: 1rem 0;
+            font-size: 0.9rem;
+        }
+        .breadcrumb-item a {
+            color: #0d6efd;
+            text-decoration: none;
+        }
+        .form-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        .form-section-title {
+            background-color: #e9ecef;
+            padding: 0.75rem 1rem;
+            margin: -2rem -2rem 1.5rem -2rem;
+            border-radius: 5px 5px 0 0;
+            font-weight: 600;
+            color: #333;
+        }
+        .form-label {
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+        .btn-save {
+            background-color: #0d6efd;
+            color: white;
+            padding: 0.5rem 2rem;
+            border: none;
+            border-radius: 5px;
+        }
+        .btn-save:hover {
+            background-color: #0b5ed7;
+        }
+        .caption-text {
+            text-align: center;
+            margin-top: 1rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        .navbar-custom {
+            background-color: #e9ecef;
+            padding: 0.75rem 1rem;
+            margin-bottom: 1rem;
+            border-radius: 5px;
+        }
+        .navbar-custom a {
+            color: #333;
+            text-decoration: none;
+            margin-right: 1.5rem;
+        }
+        .filter-section {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .filter-title {
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .table-section {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .table-title {
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .table th {
+            background-color: #6c757d;
+            color: white;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        .action-icons i {
+            margin: 0 0.25rem;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+        .page-indicator {
+            text-align: center;
+            margin: 2rem 0;
+        }
+        .page-indicator button {
+            margin: 0 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <div id="createPage">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Kegiatan</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Create New Seminar/Workshop</li>
+                </ol>
+            </nav>
+
+            <div class="form-section">
+                <div class="form-section-title">Create New Seminar</div>
+                
+                <form id="createSeminarForm">
+                    <div class="row mb-3">
+                        <label class="col-sm-3 col-form-label">Kode</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" name="kode" required>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-3 col-form-label">Nama Kegiatan</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="namaKegiatan" required>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-3 col-form-label">Tanggal Mulai</label>
+                        <div class="col-sm-3">
+                            <div class="input-group">
+                                <input type="date" class="form-control" name="tanggalMulai" required>
+                                <button class="btn btn-outline-secondary" type="button">
+                                    <i class="bi bi-calendar"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-3 col-form-label">Tanggal Akhir</label>
+                        <div class="col-sm-3">
+                            <div class="input-group">
+                                <input type="date" class="form-control" name="tanggalAkhir" required>
+                                <button class="btn btn-outline-secondary" type="button">
+                                    <i class="bi bi-calendar"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-3 col-form-label">Biaya</label>
+                        <div class="col-sm-4">
+                            <input type="number" class="form-control" name="biaya" required>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-3 col-form-label">Tempat</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="tempat" required>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-3 col-form-label">Latitude</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" name="latitude" placeholder="-6.358500">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-3 col-form-label">Longitude</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" name="longitude" placeholder="106.834100">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-3 col-form-label">Jenis Kegiatan</label>
+                        <div class="col-sm-4">
+                            <select class="form-select" name="jenisKegiatan" required>
+                                <option value="" selected>Select</option>
+                                <option value="seminar">Seminar</option>
+                                <option value="workshop">Workshop</option>
+                                <option value="pelatihan">Pelatihan</option>
+                                <option value="konferensi">Konferensi</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-3 col-form-label">PIC</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="pic" required>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <label class="col-sm-3 col-form-label">Deskripsi</label>
+                        <div class="col-sm-9">
+                            <textarea class="form-control" name="deskripsi" rows="4" required></textarea>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-3"></div>
+                        <div class="col-sm-9">
+                            <button type="submit" class="btn btn-save">Simpan</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="caption-text">
+                Gambar: Halaman Admin Create Seminar esem.com
+            </div>
+
+            <div class="page-indicator">
+                <button class="btn btn-primary" onclick="showParticipantPage()">
+                    Lihat Halaman Administrasi Peserta <i class="bi bi-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="participantPage" style="display: none;">
+            <div class="navbar-custom rounded">
+                <a href="#"><i class="bi bi-house-door"></i></a>
+                <a href="#" class="dropdown-toggle">Kegiatan</a>
+                <a href="#" class="dropdown-toggle">Peserta</a>
+            </div>
+
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Kegiatan</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Peserta Kegiatan Seminar Rembulan I September 2017</li>
+                </ol>
+            </nav>
+
+            <div class="filter-section">
+                <div class="filter-title">Filters</div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label class="form-label">Tanggal Daftar:</label>
+                        <div class="mb-2">
+                            <div class="input-group input-group-sm">
+                                <input type="text" class="form-control" placeholder="From">
+                                <input type="date" class="form-control" value="2016-12-29">
+                                <button class="btn btn-outline-secondary" type="button">
+                                    <i class="bi bi-calendar"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="input-group input-group-sm">
+                                <input type="text" class="form-control" placeholder="To">
+                                <input type="date" class="form-control" value="2017-03-29">
+                                <button class="btn btn-outline-secondary" type="button">
+                                    <i class="bi bi-calendar"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Kategori Peserta:</label>
+                        <select class="form-select form-select-sm">
+                            <option selected>Mahasiswa</option>
+                            <option value="umum">Umum</option>
+                            <option value="dosen">Dosen</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label">Status Peserta:</label>
+                        <select class="form-select form-select-sm">
+                            <option selected>Booking</option>
+                            <option value="hadir">Hadir</option>
+                            <option value="tidak-hadir">Tidak Hadir</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-section">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div class="table-title">Data Peserta Seminar</div>
+                    <button class="btn btn-sm btn-outline-secondary">
+                        <i class="bi bi-download"></i> Download
+                    </button>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <div class="input-group">
+                            <span class="input-group-text">Search</span>
+                            <input type="text" class="form-control" placeholder="Search" id="searchInput">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nomor</th>
+                                <th>Nama Lengkap</th>
+                                <th>Tempat Lahir</th>
+                                <th>Tanggal Lahir</th>
+                                <th>Gender</th>
+                                <th>Email</th>
+                                <th>Kategori</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="participantTable">
+                            <tr>
+                                <td>1</td>
+                                <td>S001</td>
+                                <td>Budi Anto</td>
+                                <td>Depok</td>
+                                <td>2000-10-1</td>
+                                <td>Laki-Laki</td>
+                                <td>budiantoi30@gmail.com</td>
+                                <td>Mahasiswa</td>
+                                <td>Booking</td>
+                                <td class="action-icons text-center">
+                                    <i class="bi bi-eye text-secondary" onclick="viewParticipant(1)"></i>
+                                    <i class="bi bi-pencil-square text-secondary" onclick="editParticipant(1)"></i>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="caption-text">
+                Gambar: Halaman Administrasi Peserta Seminar esem.com
+            </div>
+
+            <div class="page-indicator">
+                <button class="btn btn-secondary" onclick="showCreatePage()">
+                    <i class="bi bi-arrow-left"></i> Kembali ke Create Seminar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function showCreatePage() {
+            document.getElementById('createPage').style.display = 'block';
+            document.getElementById('participantPage').style.display = 'none';
+        }
+
+        function showParticipantPage() {
+            document.getElementById('createPage').style.display = 'none';
+            document.getElementById('participantPage').style.display = 'block';
+        }
+
+        document.getElementById('createSeminarForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Seminar berhasil dibuat!');
+            this.reset();
+        });
+
+        function viewParticipant(id) {
+            alert('Melihat detail peserta #' + id);
+        }
+
+        function editParticipant(id) {
+            alert('Edit peserta #' + id);
+        }
+
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const rows = document.querySelectorAll('#participantTable tr');
+            
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                row.style.display = text.includes(searchTerm) ? '' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>
